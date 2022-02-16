@@ -2,8 +2,80 @@
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Form Page</title>
+    <title>Formulario</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 </head>
+<style>
+    div { background-color:#eeeeee; margin:20px; padding:20px; max-width:500px; border:2px solid black; border-radius:25px; }
+    input { margin-left:6px; margin-right:5px; margin-bottom:6px; border:1px solid grey; border-radius:5px;}
+    #button {padding:10px; background-color:#ffffff;}
+    .signature{ text-align:center }
+</style>
 <body>
+<div>
+    <h2>Prueba de formulario</h2>
+    <form id="ahead-form" th:action="@{/form/submit}" th:object="${formData}" method="POST">
+        <label for="name">*Nombre:</label><br>
+        <input type="text" id="name" th:field="*{name}"><br>
+        <label for="surname">Apellidos:</label><br>
+        <input type="text" id="surname" th:field="*{surname}"><br>
+        <label for="phone">Telefono:</label><br>
+        <input type="text" id="phone" th:field="*{phone}"><br>
+        <label for="email">*Email:</label><br>
+        <input type="email" id="email" th:field="*{email}"><br>
+        <label for="dob">Fecha de nacimiento:</label><br>
+        <input type="date" id="dob" th:field="*{dob}"><br>
+        <label for="password">*Contraseña:</label><br>
+        <input type="password" id="password" name="password" th:field="*{password}"><br>
+        <label for="password_validation">Repetir contraseña:</label><br>
+        <input type="password" id="password_validation" name="password_validation"><br>
+        <br>
+        <input id="button" type="submit" value="Enviar">
+    </form>
+    <p class="signature">&#169; Maria Rabanales (<a href="https://github.com/RiaRabanales/prueba-formulario">GitHub)</a></p>
+</div>
+
+    <script>
+        $(document).ready(function() {
+          $("#ahead-form").validate({
+            rules: {
+              name : {
+                required: true,
+                minlength: 2
+              },
+              email: {
+                required: true,
+                email: true
+              },
+              password: {
+                required: true,
+                minlength: 5
+              },
+              password_validation: {
+                equalTo: "#password"
+              }
+            },
+            messages: {
+              name: {
+                required: "El nombre es obligatorio.",
+                minlength: "El nombre no puede ser una inicial."
+              },
+              email: {
+                required: "El email es obligatorio.",
+                email: "Este campo debe contener un email en formato válido."
+              },
+              password: {
+                required: "La contraseña es obligatoria.",
+                minlength: "La contraseña debe tener más de 4 caracteres."
+              },
+              password_validation: {
+                equalTo: "Las contraseñas deben coincidir."
+              }
+            }
+          });
+        });
+    </script>
+
 </body>
 </html>
