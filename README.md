@@ -13,6 +13,13 @@ En la capa frontal he empleado un mínimo de CSS (en un entorno profesional quiz
 
 Como mejoras pendientes mencionaría añadir tests unitarios y, aunque no aparece en los requisitos, introducir una capa de servicio. Esto me habría permitido tratar el objeto recibido para aplicarle otras validaciones o transformaciones antes de enviarlo a la segunda pantalla.
 
+### Ampliación 22/02:
+* Añado capa de servicios
+* Refactorizo FormController con método auxiliar para construir el model
+* Añado tests unitarios a la capa de servicio
+* Añado bases de testeo de comprobación de contexto (TBC)
+
+
 ## Requisitos
 Crear formulario de registro de usuarios con los siguientes campos:
 - Nombre
